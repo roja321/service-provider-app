@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           bodyLarge: TextStyle(color: Colors.black),
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.teal,
           foregroundColor: Colors.white,
         ),
       ),

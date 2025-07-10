@@ -14,22 +14,26 @@ class AuthController extends GetxController {
     super.onInit();
   }
   void login() async {
-    String? result = await _authService.login(
-      email: emailController.text,
-      password: passwordController.text,
-    );
-    print("resulit--${result}");
-    if (result == 'Service Provider') {
-       Get.offNamed('/serviceproviderbottomappbar');
-
-    } else if (result == 'Customer') {
-      Get.offNamed('/customerbottomappbar');
-    } else {
-      Get.snackbar("Error", "",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
+    try {
+      String? result = await _authService.login(
+        email: emailController.text,
+        password: passwordController.text,
       );
+      print("resulit--${result}");
+      Navigator.of(Get.context!, rootNavigator: true).pop();
+      if (result == 'Service Provider') {
+        Get.offNamed('/serviceproviderbottomappbar');
+      } else if (result == 'Customer') {
+        Get.offNamed('/customerbottomappbar');
+      } else {
+        Get.snackbar("Error", "",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    }catch(e){
+      print("error aaya---${e}");
     }
   }
 
@@ -55,9 +59,10 @@ class AuthController extends GetxController {
       );
 
 print("resulit--${result}");
+      Navigator.of(Get.context!, rootNavigator: true).pop();
       if (result == null) {
         // Signup successful: Navigate to LoginScreen with success message
-        Get.snackbar("Sucessfull",  "",
+        Get.snackbar("Successfull",  "",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
@@ -73,5 +78,6 @@ print("resulit--${result}");
       print("inside catch--${e}");
     }
   }
+
 
 }

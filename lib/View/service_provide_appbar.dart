@@ -58,7 +58,7 @@ class ServiceProviderBottomAppBar extends StatelessWidget {
       ),
 
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blue[100],
+        color: Colors.teal,
         shape: CircularNotchedRectangle(),
         notchMargin: 8.0,
         child: Row(

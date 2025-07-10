@@ -19,9 +19,9 @@ class CustomerBottomAppBar extends StatelessWidget {
               onTap: () {
                 controller.showLogoutDialog(context);
               },
-              child: const CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Icon(Icons.logout, color: Colors.grey),
+              child:  CircleAvatar(
+                backgroundColor: Colors.teal[50],
+                child: Icon(Icons.logout, color: Colors.teal),
               ),
             ),
           ),
@@ -54,7 +54,7 @@ class CustomerBottomAppBar extends StatelessWidget {
 
 
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blue[100],
+        color: Colors.teal,
         shape: CircularNotchedRectangle(),
         notchMargin: 8.0,
         child: Row(
@@ -72,7 +72,7 @@ class CustomerBottomAppBar extends StatelessWidget {
     return Obx(() => IconButton(
       icon: Icon(icon,
           color: controller.selectedIndex.value == index
-              ? Colors.blue
+              ? Colors.teal[100]
               : Colors.grey),
       onPressed: () {
         controller.changeIndex(index);

@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../Controller/auth_controller.dart';
 import '../Service/auth_service.dart';
+import '../widget/custome_widget.dart';
 import 'login_screen.dart';
 
 
@@ -75,7 +76,10 @@ class SignupScreen extends StatelessWidget {
               width: double.infinity, // Button stretches across width
               child: ElevatedButton(
                 style: ButtonStyle( backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),),
-                onPressed: authController.signup, // Call signup function
+                onPressed: () {
+                  CustomWidgets.showLoader(context);
+                  authController.signup();
+                },
                 child: const Text('Signup',style: TextStyle(color: Colors.white),),
               ),
             ),

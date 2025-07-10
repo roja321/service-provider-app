@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   // Firebase Authentication instance
@@ -52,7 +53,14 @@ class AuthService {
           .collection('customer')
           .doc(userCredential.user!.uid)
           .get();
+      String customerId = userCredential.user!.uid;
+      // String customerName = userCredential.user?.name;
 
+      // Store customer ID in shared preferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('customerId', customerId);
+      // await prefs.setString('customerName', customerName);
+print("get id from shell--${prefs.getString('customerId')}");
       return userDoc['role']; // Return the user's role (Admin/User)
     } catch (e) {
       return e.toString(); // Error: return the exception message
@@ -63,4 +71,6 @@ class AuthService {
   signOut() async {
     _auth.signOut();
   }
+
+
 }

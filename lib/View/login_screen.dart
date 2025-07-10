@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:interview_project/View/signup_screen.dart';
 import '../Controller/auth_controller.dart';
 import '../Service/auth_service.dart';
+import '../widget/custome_widget.dart';
 
 
 class LoginScreen extends StatelessWidget {
@@ -46,15 +47,18 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  style: ButtonStyle( backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),),
-                  onPressed: authController.login, // Call login function
+                  style: ButtonStyle( backgroundColor: WidgetStateProperty.all<Color>(Colors.teal),),
+                  onPressed: () {
+                    CustomWidgets.showLoader(context);
+                    authController.login();
+                  },
                   child: const Text('Login', style: TextStyle(color: Colors.white),),
                 ),
               ),
 
               const SizedBox(height: 16),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   const Text(
                     "Don't have an account? ",
