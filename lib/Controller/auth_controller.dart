@@ -11,7 +11,23 @@ class AuthController extends GetxController {
 
   @override
   void onInit() {
+    _checkIfLoggedIn();
     super.onInit();
+  }
+  void _checkIfLoggedIn() async {
+    String? role = await _authService.checkCurrentUser();
+    if (role != null) {
+      if (role == 'Service Provider') {
+        Get.offAllNamed('/serviceproviderbottomappbar');
+      } else if (role == 'Customer') {
+        Get.offAllNamed('/customerbottomappbar');
+      }
+    }
+  }
+
+  void logout() async {
+    await _authService.signOut();
+    Get.offAllNamed('/login');
   }
   void login() async {
     try {
@@ -26,7 +42,7 @@ class AuthController extends GetxController {
       } else if (result == 'Customer') {
         Get.offNamed('/customerbottomappbar');
       } else {
-        Get.snackbar("Error", "",
+        Get.snackbar("Errorr", "Please register your profile",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.red,
           colorText: Colors.white,
@@ -62,7 +78,7 @@ print("resulit--${result}");
       Navigator.of(Get.context!, rootNavigator: true).pop();
       if (result == null) {
         // Signup successful: Navigate to LoginScreen with success message
-        Get.snackbar("Successfull",  "",
+        Get.snackbar("Successful",  "Profile registered successfully",
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,

@@ -8,6 +8,14 @@ class AuthService {
   // Firestore instance
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  Future<String?> checkCurrentUser() async {
+    User? user = _auth.currentUser;
+    if (user != null) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      return prefs.getString('userRole');
+    }
+    return null;
+  }
   // Function to handle user signup
   Future<String?> signup({
     required String name,
@@ -59,6 +67,10 @@ class AuthService {
       // Store customer ID in shared preferences
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('customerId', customerId);
+      await prefs.setString('userRole', userDoc['role']); // Add this line
+
+      print("get id from shell--${prefs.getString('customerId')}");
+
       // await prefs.setString('customerName', customerName);
 print("get id from shell--${prefs.getString('customerId')}");
       return userDoc['role']; // Return the user's role (Admin/User)
@@ -70,6 +82,8 @@ print("get id from shell--${prefs.getString('customerId')}");
   // for user log out
   signOut() async {
     _auth.signOut();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
   }
 
 

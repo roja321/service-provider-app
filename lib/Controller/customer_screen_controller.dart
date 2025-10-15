@@ -78,7 +78,7 @@ print("isDataPresent.value--${isDataPresent.value}");
     searchQuery.value = query;
 
     if (query.isEmpty) {
-      // ⭐ RESET TO SHOW ALL DATA (instead of clearing)
+      // RESET TO SHOW ALL DATA (instead of clearing)
       filteredData.value = List.from(serviceProviderData);
     } else {
       // Filter data based on search query

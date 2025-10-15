@@ -22,119 +22,135 @@ class ServiceProviderScreen extends StatelessWidget{
             addServiceProvBottomSheet(context);
       }),
       body:
-      Obx(()=> controller.isDataPresent.value?
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6,vertical: 10),
-          child:ListView.builder(
+      Obx(() => controller.isDataPresent.value
+          ? Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+        child: ListView.builder(
           itemCount: controller.serviceProviderData.length,
-            itemBuilder: (context, index) {
+          itemBuilder: (context, index) {
             final item = controller.serviceProviderData[index];
-            return InkWell(
-              onTap: ()=> showServiceProviderDetails(context, item),
-              child: Card(
-                elevation: 8,
-                shadowColor: Colors.teal.withOpacity(0.3),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Colors.teal[100]!,
-                        Colors.teal[400]!,
-                      ],
-                    ),
+
+            return TweenAnimationBuilder<double>(
+              tween: Tween(begin: 0, end: 1),
+              duration: Duration(milliseconds: 500 + (index * 100)),
+              builder: (context, value, child) {
+                return Opacity(
+                  opacity: value,
+                  child: Transform.translate(
+                    offset: Offset(0, 50 * (1 - value)), // slide from bottom
+                    child: child,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Header with avatar
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 20,
-                              backgroundColor: Colors.teal[300],
-                              child: Icon(
-                                Icons.person,
-                                color: Colors.white,
-                                size: 18,
+                );
+              },
+              child: InkWell(
+                onTap: () => showServiceProviderDetails(context, item),
+                child: Card(
+                  elevation: 8,
+                  shadowColor: Colors.teal.withOpacity(0.3),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Colors.teal[50]!,
+                          Colors.teal[200]!,
+                        ],
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Header with avatar
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 20,
+                                backgroundColor: Colors.teal[300],
+                                child: Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                  size: 18,
+                                ),
                               ),
-                            ),
-                            SizedBox(width: 15),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    item['name'],
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.teal[800],
-                                    ),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Container(
-                                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                                    decoration: BoxDecoration(
-                                      color: Colors.teal[200],
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Text(
-                                      item['services'],
+                              SizedBox(width: 15),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      item['name'],
                                       style: TextStyle(
-                                        fontSize: 12,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
                                         color: Colors.teal[800],
-                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(height: 4),
+                                    Container(
+                                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                      decoration: BoxDecoration(
+                                        color: Colors.teal[200],
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      child: Text(
+                                        item['services'],
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.teal[800],
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
 
-                        SizedBox(height: 8),
+                          SizedBox(height: 8),
 
-                        // Contact Information
-                        CustomWidgets.buildInfoRow(
-                          icon: Icons.phone,
-                          label: 'Contact',
-                          value: item['phone'],
-                          iconColor: Colors.green[600]!,
-                        ),
+                          // Contact Information
+                          CustomWidgets.buildInfoRow(
+                            icon: Icons.phone,
+                            label: 'Contact',
+                            value: item['phone'],
+                            iconColor: Colors.green[600]!,
+                          ),
 
-                        SizedBox(height: 8),
+                          SizedBox(height: 8),
 
-                        // Experience Information
-                        CustomWidgets.buildInfoRow(
-                          icon: Icons.work_history,
-                          label: 'Experience',
-                          value: item['experiance'],
-                          iconColor: Colors.orange[600]!,
-                        ),
-
-
-
-                        // Action Buttons
-
-                      ],
+                          // Experience Information
+                          CustomWidgets.buildInfoRow(
+                            icon: Icons.work_history,
+                            label: 'Experience',
+                            value: item['experiance'],
+                            iconColor: Colors.orange[600]!,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              )
+              ),
             );
-        }
+          },
         ),
-            ):Container(),
-      ));
+      )
+     : Center(
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
+        ),
+      ))
+
+    );
+
   }
 
   addServiceProvBottomSheet(BuildContext context) {

@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'auth_controller.dart';
+
 class CustomerBottomController extends GetxController {
   var selectedIndex = 0.obs;
 
@@ -26,7 +28,8 @@ class CustomerBottomController extends GetxController {
       onConfirm: () {
         FirebaseAuth.instance.signOut();
         Get.back(); // Close the dialog
-        Get.offAllNamed('/login');
+        Get.find<AuthController>().logout();
+        // Get.offAllNamed('/login');
         Get.snackbar("Logged Out", "You have successfully logged out.");
       },
     );

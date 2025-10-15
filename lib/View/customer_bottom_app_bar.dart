@@ -10,7 +10,7 @@ class CustomerBottomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Welcome to EasyService"),
+      appBar: AppBar(title: const Text("Welcome to EasyService Customer page"),
 
         actions: [
           Padding(

@@ -1,4 +1,6 @@
 // This screen handles user login with email and password
+// import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -55,9 +57,22 @@ class LoginScreen extends StatelessWidget {
                   child: const Text('Login', style: TextStyle(color: Colors.white),),
                 ),
               ),
-
+            //to test crashlytics
+            // ElevatedButton(
+            //   onPressed: () {
+            //     FirebaseCrashlytics.instance.crash();
+            //   },
+            //   child: Text('Crash App'),
+            // ),
               const SizedBox(height: 16),
-              Row(
+          // ElevatedButton(
+          //   onPressed: () {
+          //     FirebaseCrashlytics.instance.crash();
+          //   },
+          //   child: Text('Crash App'),
+          // ),
+
+          Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   const Text(

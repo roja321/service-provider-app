@@ -75,7 +75,7 @@ class SignupScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity, // Button stretches across width
               child: ElevatedButton(
-                style: ButtonStyle( backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),),
+                style: ButtonStyle( backgroundColor: WidgetStateProperty.all<Color>(Colors.teal),),
                 onPressed: () {
                   CustomWidgets.showLoader(context);
                   authController.signup();

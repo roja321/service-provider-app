@@ -245,14 +245,14 @@ class CustomWidgets {
   }) {
     return Container(
       width: width ?? double.infinity,
-      height: 56,
+      height: 40,
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFF00897B), Color(0xFF00695C)], // teal[600] and teal[700]
+          colors: [ Color(0xFF80CBC4) ,Color(0xFF4DB6AC)], // teal[600] and teal[700]
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
             color: const Color(0xFF00897B).withOpacity(0.3),
@@ -276,7 +276,7 @@ class CustomWidgets {
             if (icon != null) ...[
               Icon(
                 icon,
-                color: Colors.white,
+                color: Colors.teal[400],
                 size: 20,
               ),
               const SizedBox(width: 8),
@@ -284,7 +284,7 @@ class CustomWidgets {
             Text(
               text,
               style: const TextStyle(
-                color: Colors.white,
+                color: Colors.teal,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
